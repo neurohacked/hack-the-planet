@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var userChoice, charSelected, defSelected, playerWin;
+	var charSelected, firstDefender, secondDefender, thirdDefender, playerWin;
 
 	var chars = {
 			luke: {
@@ -37,20 +37,21 @@ $(document).ready(function() {
 		}
 		//Play the game
 		function play() {
+			firstDefender = '';
+            secondDefender = '';
+			thirdDefender = '';
 			charSelected = false;
-			defSelected = false;
 			playerWin = false;
 			$('.choice').html('Select Your Character: ')
 			$('#luke, #obi-wan, #vader, #boba').appendTo('.characters');
 
 			console.log('Is Character Selected: ' + charSelected);
-			console.log('Is Defender Selected: ' + defSelected);
 		}
 	$('.char').click(function() {
 		$('.choice').html('Your Character: ');
-		if (game.play.charSelected === true) {
-			return;
-		} else if ($(this).attr('id') == "luke") {
+		if (charSelected) return;
+		charSelected = true;
+		if ($(this).attr('id') == "luke") {
 			$('#obi-wan, #vader, #boba').toggleClass('char enemy').appendTo('.enemies');
 		} else if ($(this).attr('id') == "obi-wan") {
 			$('#luke, #vader, #boba').toggleClass('char enemy').appendTo('.enemies');
@@ -59,8 +60,7 @@ $(document).ready(function() {
 		} else if ($(this).attr('id') == "boba") {
 			$('#luke, #obi-wan, #vader').toggleClass('char enemy').appendTo('.enemies');
 		}
-		game.play.charSelected = true;
-		console.log('Character Selected: ' + game.play.charSelected);
+		console.log('Character Selected: ' + charSelected);
 	});
 
 	// Select a defender
@@ -77,7 +77,6 @@ $(document).ready(function() {
 		} else if ($(this).attr('id') == "boba") {
 			$('#luke, #obi-wan, #vader').attr('class', 'btn btn-lg enemy').appendTo('.enemies');
 		}
-		console.log('Defender Selected: ' + game.play.defSelected);
 	});
 	// Fight
 
