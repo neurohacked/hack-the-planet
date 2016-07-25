@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    background-image: url('../img/stars.jpg');
+}
+.jumbotron {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.jumbotron h1 {
+    color: #F9ED3E;
+}
+.jumbotron h3 {
+    color: #26DCE7;
+}
+.btn.char,
+.enemy {
+	margin: 0 5px;
+}
+
+#luke,
+#obi-wan {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
+
+#luke:hover,
+#obi-wan:hover {
+	color: #fff;
+	background-color: #286090;
+	border-color: #204d74;
+}
+
+#vader,
+#boba {
+	color: #fff;
+	background-color: #d9534f;
+	border-color: #d43f3a;
+}
+
+#vader:hover,
+#boba:hover {
+	color: #fff;
+	background-color: #c9302c;
+	border-color: #ac2925;
+}
+#reset {
+    margin-bottom: 20px;
+}

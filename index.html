@@ -1,11 +1,60 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
 
-<script type="text/javascript" src="/assets/js/script.js" />
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>StarWars RPG</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
+    <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <h1 class="text-center">Star Wars RPG</h1>
+        <h3 class="text-center">A long time ago in a galaxy far, far away....</h3>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title choice"></h1>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="center-block characters">
+                            <button id="luke" class="btn btn-lg btn-primary char">Luke Skywalker</button>
+                            <button id="obi-wan" class="btn btn-lg btn-primary char">Obi-Wan Kenobi</button>
+                            <button id="vader" class="btn btn-lg btn-danger char">Darth Vader</button>
+                            <button id="boba" class="btn btn-lg btn-danger char">Boba Fett</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Enemies: </h1>
+                    </div>
+
+                    <div class="panel-body enemies">
+
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Defender: </h1>
+                    </div>
+
+                    <div class="panel-body defender">
+                    </div>
+                </div>
+                <button id="reset" class="btn btn-lg btn-default center-block">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+
+</body>
+
 </html>
