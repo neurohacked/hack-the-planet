@@ -14,8 +14,8 @@ $(document).ready(function() {
         luke = {
             name: "Luke Skywalker",
             hp: 150,
-            ap: 5,
-            ca: 20,
+            ap: 4,
+            ca: 15,
             atk: function(enemy) {
                 enemy.hp = enemy.hp - 10;
             },
@@ -25,9 +25,9 @@ $(document).ready(function() {
         }
         obi = {
             name: "Obi-Wan Kenobi",
-            hp: 120,
-            ap: 8,
-            ca: 15,
+            hp: 100,
+            ap: 3,
+            ca: 5,
             atk: function(enemy) {
                 enemy.hp = enemy.hp - obi.ap;
                 obi.ap *= 2;
@@ -38,9 +38,9 @@ $(document).ready(function() {
         }
         vader = {
             name: "Darth Vader",
-            hp: 180,
-            ap: 6,
-            ca: 25,
+            hp: 120,
+            ap: 2,
+            ca: 20,
             atk: function(enemy) {
                 enemy.hp = enemy.hp - 10;
             },
@@ -48,27 +48,27 @@ $(document).ready(function() {
                 attacker.hp = attacker.hp - vader.ca;
             }
         }
-        boba = {
-            name: "Boba Fett",
-            hp: 100,
-            ap: 3,
-            ca: 5,
+        sidious = {
+            name: "Darth Sidious",
+            hp: 180,
+            ap: 1,
+            ca: 25,
             atk: function(enemy) {
                 enemy.hp = enemy.hp - 10;
             },
             catk: function(attacker) {
-                attacker.hp = attacker.hp - boba.ca;
+                attacker.hp = attacker.hp - sidious.ca;
             }
         }
 
         $('.choice').html('Select Your Character: ');
         $('#character-stats, #defender-stats').empty();
-        $('#luke, #obi-wan, #vader, #boba').show().attr('class', 'btn btn-lg char').appendTo('#characters');
+        $('#luke, #obi-wan, #vader, #sidious').show().attr('class', 'btn btn-lg char').appendTo('#characters');
         $('#luke-hp').html('HP: ' + luke.hp);
         $('#obi-hp').html('HP: ' + obi.hp);
         $('#vader-hp').html('HP: ' + vader.hp);
-        $('#boba-hp').html('HP: ' + boba.hp);
-        $('#luke, #obi-wan, #vader, #boba, #attack').off('click');
+        $('#sidious-hp').html('HP: ' + sidious.hp);
+        $('#luke, #obi-wan, #vader, #sidious, #attack').off('click');
 
         selectChar();
 
@@ -82,21 +82,21 @@ $(document).ready(function() {
             if (charSelected) return;
             charSelected = true;
             if ($(this).attr('id') == "luke") {
-                $('#obi-wan, #vader, #boba').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
+                $('#obi-wan, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
                 selectedChar = luke;
             } else if ($(this).attr('id') == "obi-wan") {
-                $('#luke, #vader, #boba').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
+                $('#luke, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
                 selectedChar = obi;
             } else if ($(this).attr('id') == "vader") {
-                $('#luke, #obi-wan, #boba').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
+                $('#luke, #obi-wan, #sidious').toggleClass('char enemy').appendTo('#enemies');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
                 selectedChar = vader;
-            } else if ($(this).attr('id') == "boba") {
+            } else if ($(this).attr('id') == "sidious") {
                 $('#luke, #obi-wan, #vader').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
-                selectedChar = boba;
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
+                selectedChar = sidious;
             }
 
             selectFirst();
@@ -111,24 +111,24 @@ $(document).ready(function() {
             defender = true;
             if ($(this).attr('id') == "luke") {
                 $('#luke').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
                 firstDefender = luke;
                 console.log('You\'re fighting ' + luke.name);
             } else if ($(this).attr('id') == "obi-wan") {
                 $('#obi-wan').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
                 firstDefender = obi;
                 console.log('You\'re fighting ' + obi.name);
             } else if ($(this).attr('id') == "vader") {
                 $('#vader').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
                 firstDefender = vader;
                 console.log('You\'re fighting ' + vader.name);
-            } else if ($(this).attr('id') == "boba") {
-                $('#boba').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #boba').off('click');
-                firstDefender = boba;
-                console.log('You\'re fighting ' + boba.name);
+            } else if ($(this).attr('id') == "sidious") {
+                $('#sidious').toggleClass('enemy first').appendTo('#defender');
+                $('#luke, #obi-wan, #vader, #sidious').off('click');
+                firstDefender = sidious;
+                console.log('You\'re fighting ' + sidious.name);
             }
             selectedDef = firstDefender;
             fight();
@@ -161,10 +161,10 @@ $(document).ready(function() {
                     console.log('OOF');
                     luke.atk(vader);
                     vader.catk(luke);
-                } else if (selectedDef === boba) {
+                } else if (selectedDef === sidious) {
                     console.log('ZOW');
-                    luke.atk(boba);
-                    boba.catk(luke);
+                    luke.atk(sidious);
+                    sidious.catk(luke);
                 }
             }
             if (selectedChar === obi) {
@@ -180,10 +180,10 @@ $(document).ready(function() {
                     console.log('OOF');
                     obi.atk(vader);
                     vader.catk(obi);
-                } else if (selectedDef === boba) {
+                } else if (selectedDef === sidious) {
                     console.log('ZOW');
-                    obi.atk(boba);
-                    boba.catk(obi);
+                    obi.atk(sidious);
+                    sidious.catk(obi);
                 }
             }
             if (selectedChar === vader) {
@@ -195,25 +195,25 @@ $(document).ready(function() {
                     console.log('POW');
                     vader.atk(obi);
                     obi.catk(vader);
-                } else if (selectedDef === boba) {
+                } else if (selectedDef === sidious) {
                     console.log('ZOW');
-                    vader.atk(boba);
-                    boba.catk(vader);
+                    vader.atk(sidious);
+                    sidious.catk(vader);
                 }
             }
-            if (selectedChar === boba) {
+            if (selectedChar === sidious) {
                 if (selectedDef === luke) {
                     console.log('PEW');
-                    boba.atk(luke);
-                    luke.catk(boba);
+                    sidious.atk(luke);
+                    luke.catk(sidious);
                 } else if (selectedDef === obi) {
                     console.log('POW');
-                    boba.atk(obi);
-                    obi.catk(boba);
+                    sidious.atk(obi);
+                    obi.catk(sidious);
                 } else if (selectedDef === vader) {
                     console.log('OOF');
-                    boba.atk(vader);
-                    vader.catk(boba);
+                    sidious.atk(vader);
+                    vader.catk(sidious);
                 }
             }
         });

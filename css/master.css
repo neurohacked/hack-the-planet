@@ -9,6 +9,11 @@ html, body {
 body {
     background-image: url('../img/stars.jpg');
 }
+.stats {
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
 .jumbotron {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -40,14 +45,14 @@ body {
 }
 
 #vader,
-#boba {
+#sidious {
 	color: #fff;
 	background-color: #d9534f;
 	border-color: #d43f3a;
 }
 
 #vader:hover,
-#boba:hover {
+#sidious:hover {
 	color: #fff;
 	background-color: #c9302c;
 	border-color: #ac2925;
