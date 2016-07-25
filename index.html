@@ -15,43 +15,68 @@
         <h3 class="text-center">A long time ago in a galaxy far, far away....</h3>
     </div>
 
-    <div class="row">
-        <div class="container">
-            <div class="col-lg-12">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title text-center">TO PLAY</h1>
+                    </div>
+
+                    <div class="panel-body">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-md-8 col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1 class="panel-title choice"></h1>
                     </div>
 
-                    <div class="panel-body">
-                        <div class="center-block characters">
-                            <button id="luke" class="btn btn-lg btn-primary char">Luke Skywalker</button>
-                            <button id="obi-wan" class="btn btn-lg btn-primary char">Obi-Wan Kenobi</button>
-                            <button id="vader" class="btn btn-lg btn-danger char">Darth Vader</button>
-                            <button id="boba" class="btn btn-lg btn-danger char">Boba Fett</button>
-                        </div>
+                    <div id="characters" class="panel-body">
+                        <button id="luke">Luke Skywalker</button>
+                        <button id="obi-wan">Obi-Wan Kenobi</button>
+                        <button id="vader">Darth Vader</button>
+                        <button id="boba">Boba Fett</button>
                     </div>
                 </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1 class="panel-title">Enemies: </h1>
+                        <h1 class="panel-title text-center">BATTLE!</h1>
                     </div>
-
-                    <div class="panel-body enemies">
-
+                    <div class="panel-body">
+                        <button id="attack" class="btn btn-lg btn-success btn-block">ATTACK</button>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1 class="panel-title">Defender: </h1>
                     </div>
+                    <div id="defender" class="panel-body">
 
-                    <div class="panel-body defender">
                     </div>
                 </div>
-                <button id="reset" class="btn btn-lg btn-default center-block">Play Again</button>
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Enemies: </h1>
+                    </div>
+                    <div id="enemies" class="panel-body">
+
+                    </div>
+                </div>
             </div>
         </div>
+        <button id="reset" class="btn btn-lg btn-default center-block">Play Again</button>
     </div>
     <script type="text/javascript" src="script.js"></script>
 
