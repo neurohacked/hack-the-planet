@@ -35,6 +35,7 @@ $(document).ready(function() {
     function selectCharacter() {
         $('.char').on('click', function() {
             $choice.html('Your Character: ');
+            $info.html('Great choice! Now choose someone to battle against from the avaialble enemies.');
             if (charSelected) return;
             charSelected = true;
             // Try tying the objects to the DOM elements that were created.
