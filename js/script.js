@@ -1,10 +1,14 @@
 $(document).ready(function() {
-    battleMusic = new Audio('http://dacjosvale.free.fr/mp3/John%20Williams%20-%20Star%20Wars%20Battle%20Theme.mp3');
+    // battleMusic = new Audio('http://dacjosvale.free.fr/mp3/John%20Williams%20-%20Star%20Wars%20Battle%20Theme.mp3');
+    $game = $('#game');
+    $select = $('#select');
     $choice = $('#choice');
     $stats = $('#battle-stats');
     $characters = $('#luke, #kenobi, #vader, #sidious');
     $infohead = $('#info-header');
     $info = $('#info');
+    $reset = $('#reset');
+    $attack = $('#attack');
     // Create characters for the game
     function character(name, healthPoints, attackPower, counterAttack) {
         this.name = name;
@@ -15,26 +19,31 @@ $(document).ready(function() {
     }
 
     function createCharacters() {
-        luke = new character('Luke Skywalker', 150, 5, 15);
+        luke = new character('Luke Skywalker', 150, 5, 50);
         kenobi = new character('Obi-Wan Kenobi', 100, 10, 5);
         vader = new character('Darth Vader', 120, 2, 20);
         sidious = new character('Darth Sidious', 180, 1, 25);
     }
     // Display characters on the page with all properties set at default.
-    function displayCharacters() {
+    function display() {
         $choice.html('Select Your Character: ');
-        $stats.empty();
+        $stats.empty().hide();
         $characters.off('click');
         $characters.show().attr('class', 'btn btn-lg char').appendTo('#characters');
         $('#luke-hp').html('HP: ' + luke.healthPoints);
         $('#kenobi-hp').html('HP: ' + kenobi.healthPoints);
         $('#vader-hp').html('HP: ' + vader.healthPoints);
         $('#sidious-hp').html('HP: ' + sidious.healthPoints);
+        $game.hide();
+        $select.show();
+        $attack.show();
+        $reset.hide();
     }
     // Player character selection.
     function selectCharacter() {
         $('.char').on('click', function() {
-            $choice.html('Your Character: ');
+            $game.show();
+            $select.hide();
             $info.html('Great choice! Now choose someone to battle against from the avaialble enemies.');
             if (charSelected) return;
             charSelected = true;
@@ -48,11 +57,13 @@ $(document).ready(function() {
 
 
             if ($(this).attr('id') == "luke") {
+                $('#luke').appendTo('#character');
                 $('#kenobi, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
                 $('#luke-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = luke;
             } else if ($(this).attr('id') == "kenobi") {
+                $('#kenobi').appendTo('#character');
                 $('#luke, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
                 $('#kenobi-hp').attr("id", "character-hp");
                 $characters.off('click');
@@ -135,14 +146,16 @@ $(document).ready(function() {
         // check if defender health is 0
         // check if defender is defeated
         if (selectedChar.healthPoints <= 0) {
-            alert('You Lost!');
+            $attack.hide();
+            $reset.show();
+            $stats.html('<div id="defeat" class="alert alert-danger">You Were Defeated!</div>');
+            // alert('You were defeated!');
             return;
-        }
-        if (selectedDef.isDead()) {
+        } else if (selectedDef.isDead()) {
             $stats.html('You defeated ' + selectedDef.name);
             firstDefender.hp = 1;
             $('.first').hide();
-            defSelected = false;
+            firstDefender = false;
             selectSecond();
             return;
         } else if (secondDefender.hp <= 0) {
@@ -168,7 +181,8 @@ $(document).ready(function() {
         character.prototype.isDead = function() {
             return this.healthPoints <= 0;
         }
-        $('#attack').on('click', function() {
+        $attack.on('click', function() {
+            $stats.show();
             if (firstDefender === true) {
                 selectedChar.hit(selectedDef);
                 $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.attackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterAttack + ' damage.');
@@ -203,7 +217,7 @@ $(document).ready(function() {
         playerWin = false;
 
         createCharacters();
-        displayCharacters();
+        display();
         selectCharacter();
 
         $infohead.html('TO PLAY');

@@ -27,7 +27,7 @@ img {
     font-size: 1.5em;
     color: #26DCE7;
 }
-#info {
+#info, #defeat {
     font-size: 1.2em;
     font-weight: bold;
     text-align: center;
