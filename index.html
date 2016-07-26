@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>StarWars RPG</title>
+    <title>StarWars Duel</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
     <script src="http://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
@@ -11,7 +11,7 @@
 <body>
 
     <div class="jumbotron">
-        <h1 class="text-center">Star Wars RPG</h1>
+        <h1 class="text-center">Star Wars Duel</h1>
         <h3 class="text-center">A long time ago in a galaxy far, far away....</h3>
     </div>
 
@@ -24,9 +24,9 @@
                         <h1 class="panel-title text-center">TO PLAY</h1>
                     </div>
 
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            FIGHT Em'.
                         </p>
                     </div>
                 </div>
@@ -37,19 +37,19 @@
             <div class="col-sm-8 col-md-8 col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1 class="panel-title choice"></h1>
+                        <h1 id="choice" class="panel-title"></h1>
                     </div>
 
                     <div id="characters" class="panel-body">
-                        <button id="luke">Luke Skywalker<br/><p id="luke-hp">
+                        <button id="luke"><img src="img/luke.png" /><br />Luke Skywalker<br/><p id="luke-hp">
 
                         </p></button>
-                        <button id="obi-wan">Obi-Wan Kenobi<br/><p id="obi-hp">
+                        <button id="kenobi"><img src="img/kenobi.png" /><br />Obi-Wan Kenobi<br/><p id="kenobi-hp">
                             </p></button>
-                        <button id="vader">Darth Vader<br/><p id="vader-hp">
+                        <button id="vader"><img src="img/vader.png" /><br />Darth Vader<br/><p id="vader-hp">
 
                         </p></button>
-                        <button id="sidious">Darth Sidious<br/><p id="sidious-hp">
+                        <button id="sidious"><img src="img/sidious.png" /><br />Darth Sidious<br/><p id="sidious-hp">
 
                         </p></button>
                     </div>
@@ -61,10 +61,7 @@
                     </div>
                     <div class="panel-body">
                         <button id="attack" class="btn btn-lg btn-success btn-block">ATTACK</button>
-                        <p id="character-stats" class="stats">
-
-                        </p>
-                        <p id="defender-stats" class="stats">
+                        <p id="battle-stats">
 
                         </p>
                     </div>

@@ -1,16 +1,11 @@
 $(document).ready(function() {
-    var selectedChar, selectedDef, charSelected, firstDefender, secondDefender, thirdDefender, playerWin;
+    battleMusic = new Audio('http://dacjosvale.free.fr/mp3/John%20Williams%20-%20Star%20Wars%20Battle%20Theme.mp3');
+    $choice = $('#choice');
+    $stats = $('#battle-stats');
+    $characters = $('#luke, #kenobi, #vader, #sidious');
 
-    //Play the game
-    function play() {
-        selectedChar = '';
-        selectedDef = '';
-        firstDefender = '';
-        secondDefender = '';
-        thirdDefender = '';
-        charSelected = false;
-        defender = false;
-        playerWin = false;
+    // Create characters for the game
+    function createCharacters() {
         luke = {
             name: "Luke Skywalker",
             hp: 150,
@@ -23,17 +18,16 @@ $(document).ready(function() {
                 attacker.hp = attacker.hp - luke.ca;
             }
         }
-        obi = {
+        kenobi = {
             name: "Obi-Wan Kenobi",
             hp: 100,
-            ap: 3,
+            ap: 400,
             ca: 5,
             atk: function(enemy) {
-                enemy.hp = enemy.hp - obi.ap;
-                obi.ap *= 2;
+                enemy.hp = enemy.hp - kenobi.ap;
             },
             catk: function(attacker) {
-                attacker.hp = attacker.hp - obi.ca;
+                attacker.hp = attacker.hp - kenobi.ca;
             }
         }
         vader = {
@@ -60,42 +54,38 @@ $(document).ready(function() {
                 attacker.hp = attacker.hp - sidious.ca;
             }
         }
-
-        $('.choice').html('Select Your Character: ');
-        $('#character-stats, #defender-stats').empty();
-        $('#luke, #obi-wan, #vader, #sidious').show().attr('class', 'btn btn-lg char').appendTo('#characters');
-        $('#luke-hp').html('HP: ' + luke.hp);
-        $('#obi-hp').html('HP: ' + obi.hp);
-        $('#vader-hp').html('HP: ' + vader.hp);
-        $('#sidious-hp').html('HP: ' + sidious.hp);
-        $('#luke, #obi-wan, #vader, #sidious, #attack').off('click');
-
-        selectChar();
-
-        console.log('Is Character Selected: ' + charSelected);
-        console.log('Is First Defender Selected: ' + firstDefender);
     }
-    // Select character
-    function selectChar() {
+
+    // Player character selection.
+    function selectCharacter() {
         $('.char').on('click', function() {
-            $('.choice').html('Your Character: ');
+            $choice.html('Your Character: ');
             if (charSelected) return;
             charSelected = true;
+            // Try tying the objects to the DOM elements that were created.
+            // This would significantly reduce code duplication.
+
+
+            // $('#kenobi, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
+            // $('#luke, #kenobi, #vader, #sidious').off('click');
+            // selectedChar = char.name;
+
+
             if ($(this).attr('id') == "luke") {
-                $('#obi-wan, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
+                $('#kenobi, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
                 selectedChar = luke;
-            } else if ($(this).attr('id') == "obi-wan") {
+            } else if ($(this).attr('id') == "kenobi") {
                 $('#luke, #vader, #sidious').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
-                selectedChar = obi;
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                selectedChar = kenobi;
             } else if ($(this).attr('id') == "vader") {
-                $('#luke, #obi-wan, #sidious').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
+                $('#luke, #kenobi, #sidious').toggleClass('char enemy').appendTo('#enemies');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
                 selectedChar = vader;
             } else if ($(this).attr('id') == "sidious") {
-                $('#luke, #obi-wan, #vader').toggleClass('char enemy').appendTo('#enemies');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
+                $('#luke, #kenobi, #vader').toggleClass('char enemy').appendTo('#enemies');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
                 selectedChar = sidious;
             }
 
@@ -107,123 +97,140 @@ $(document).ready(function() {
     // Select first defender
     function selectFirst() {
         $('.enemy').on('click', function() {
-            if (defender) return;
-            defender = true;
+            if (defSelected) return;
+            defSelected = true;
+            firstDefender = true;
             if ($(this).attr('id') == "luke") {
                 $('#luke').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
-                firstDefender = luke;
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                selectedDef = luke;
                 console.log('You\'re fighting ' + luke.name);
-            } else if ($(this).attr('id') == "obi-wan") {
-                $('#obi-wan').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
-                firstDefender = obi;
-                console.log('You\'re fighting ' + obi.name);
+            } else if ($(this).attr('id') == "kenobi") {
+                $('#kenobi').toggleClass('enemy first').appendTo('#defender');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                selectedDef = kenobi;
+                console.log('You\'re fighting ' + kenobi.name);
             } else if ($(this).attr('id') == "vader") {
                 $('#vader').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
-                firstDefender = vader;
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                selectedDef = vader;
                 console.log('You\'re fighting ' + vader.name);
             } else if ($(this).attr('id') == "sidious") {
                 $('#sidious').toggleClass('enemy first').appendTo('#defender');
-                $('#luke, #obi-wan, #vader, #sidious').off('click');
-                firstDefender = sidious;
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                selectedDef = sidious;
                 console.log('You\'re fighting ' + sidious.name);
             }
-            selectedDef = firstDefender;
+            // selectedDef = firstDefender;
             fight();
         });
+    }
+    // Select second defender
+    function selectSecond() {
+        $('.enemy').on('click', function() {
+            if (defSelected) return;
+            defSelected = true;
+            if ($(this).attr('id') == "luke") {
+                $('#luke').toggleClass('enemy second').appendTo('#defender');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                secondDefender = luke;
+                console.log('You\'re fighting ' + luke.name);
+            } else if ($(this).attr('id') == "kenobi") {
+                $('#kenobi').toggleClass('enemy second').appendTo('#defender');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                secondDefender = kenobi;
+                console.log('You\'re fighting ' + kenobi.name);
+            } else if ($(this).attr('id') == "vader") {
+                $('#vader').toggleClass('enemy second').appendTo('#defender');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                secondDefender = vader;
+                console.log('You\'re fighting ' + vader.name);
+            } else if ($(this).attr('id') == "sidious") {
+                $('#sidious').toggleClass('enemy second').appendTo('#defender');
+                $('#luke, #kenobi, #vader, #sidious').off('click');
+                secondDefender = sidious;
+                console.log('You\'re fighting ' + sidious.name);
+            }
+            selectedDef = secondDefender;
+            console.log('Defender: ' + defSelected)
+            fight();
+        });
+    }
+    // Check stats after attack
+    function check() {
+        // check if defender health is 0
+        // check if defender is defeated
+        if (selectedChar.hp <= 0) {
+            alert('You Lost!');
+            return;
+        }
+        if (selectedDef.hp <= 0) {
+            $stats.html('You defeated ' + selectedDef.name);
+            firstDefender.hp = 1;
+            $('.first').hide();
+            defSelected = false;
+            selectSecond();
+            return;
+        } else if (secondDefender.hp <= 0) {
+            // selectThird();
+        } else if (thirdDefender.hp <= 0) {
+            playerWin = true;
+            alert('You Won!');
+        }
     }
     // BATTLE!
     function fight() {
         $('#attack').on('click', function() {
-            if (selectedChar.hp <= 0) {
-                alert('You Lost!');
-                return;
-            }
-            if (firstDefender.hp <= 0) {
-                alert('killed');
-                $('.first').hide();
-                return;
-                // selectSecond();
-            } else if (secondDefender.hp <= 0) {
-                selectThird();
-            } else if (thirdDefender.hp <= 0) {
-                playerWin = true;
-                alert('You Won!');
-            }
-            if (selectedChar === luke) {
-                if (selectedDef === obi) {
-                    console.log('POW');
-                    luke.atk(obi);
-                    obi.catk(luke);
-                } else if (selectedDef === vader) {
-                    console.log('OOF');
-                    luke.atk(vader);
-                    vader.catk(luke);
-                } else if (selectedDef === sidious) {
-                    console.log('ZOW');
-                    luke.atk(sidious);
-                    sidious.catk(luke);
-                }
-            }
-            if (selectedChar === obi) {
-                if (selectedDef === luke) {
-                    console.log('PEW');
-                    obi.atk(luke);
-                    luke.catk(obi);
-                    $('#character-stats').html('You attacked ' + selectedDef.name + ' for ' + selectedChar.ap + ' damage.');
-                    $('#defender-stats').html(selectedDef.name + ' attacked you for ' + selectedDef.ca + ' damage.');
-                    $('#obi-hp').html('HP: ' + selectedChar.hp);
-                    $('#luke-hp').html('HP: ' + selectedDef.hp);
-                } else if (selectedDef === vader) {
-                    console.log('OOF');
-                    obi.atk(vader);
-                    vader.catk(obi);
-                } else if (selectedDef === sidious) {
-                    console.log('ZOW');
-                    obi.atk(sidious);
-                    sidious.catk(obi);
-                }
-            }
-            if (selectedChar === vader) {
-                if (selectedDef === luke) {
-                    console.log('PEW');
-                    vader.atk(luke);
-                    luke.catk(vader);
-                } else if (selectedDef === obi) {
-                    console.log('POW');
-                    vader.atk(obi);
-                    obi.catk(vader);
-                } else if (selectedDef === sidious) {
-                    console.log('ZOW');
-                    vader.atk(sidious);
-                    sidious.catk(vader);
-                }
-            }
-            if (selectedChar === sidious) {
-                if (selectedDef === luke) {
-                    console.log('PEW');
-                    sidious.atk(luke);
-                    luke.catk(sidious);
-                } else if (selectedDef === obi) {
-                    console.log('POW');
-                    sidious.atk(obi);
-                    obi.catk(sidious);
-                } else if (selectedDef === vader) {
-                    console.log('OOF');
-                    sidious.atk(vader);
-                    vader.catk(sidious);
-                }
-            }
+            if (firstDefender === true) {
+            selectedChar.atk(selectedDef) && selectedDef.catk(selectedChar);
+            $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.ap + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.ca + ' damage.');
+        } else if (secondDefender === true) {
+            selectedChar.atk(selectedDef) && selectedDef.catk(selectedChar);
+            $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.ap + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.ca + ' damage.');
+        } else if (thirdDefender === true) {
+            selectedChar.atk(selectedDef) && selectedDef.catk(selectedChar);
+            $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.ap + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.ca + ' damage.');
+        }
+        selectedChar.ap *= 2;
+        check();
         });
-
-        console.log('Let\'s Get It On!!');
     }
+    // Display characters on the page with all properties set at default.
+    function displayCharacters() {
+        $choice.html('Select Your Character: ');
+        $stats.empty();
+        $characters.off('click');
+        $characters.show().attr('class', 'btn btn-lg char').appendTo('#characters');
+        $('#luke-hp').html('HP: ' + luke.hp);
+        $('#kenobi-hp').html('HP: ' + kenobi.hp);
+        $('#vader-hp').html('HP: ' + vader.hp);
+        $('#sidious-hp').html('HP: ' + sidious.hp);
+    }
+    // Setup the game for initial play.
+    function play() {
+        selectedChar = '';
+        selectedDef = '';
+        firstDefender = false;
+        secondDefender = false;
+        thirdDefender = false;
+        charSelected = false;
+        defSelected = false;
+        firstDefeated = false;
+        secondDefeated = false;
+        thirdDefeated = false;
+        playerWin = false;
 
-    // Start New Game
+        createCharacters()
+        displayCharacters();
+        selectCharacter();
+
+        console.log('Is Character Selected: ' + charSelected);
+        console.log('Is Defender Selected: ' + defSelected);
+    }
+    // Restart the game to play a New Game.
     $('#reset').on('click', function() {
         play();
     });
     play();
+
 });

@@ -1,1 +1,1 @@
-# starwars-rpg
+# starwars-duel
