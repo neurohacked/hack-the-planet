@@ -1,1 +1,1 @@
-# starwars-duel
+# hack-the-planet
