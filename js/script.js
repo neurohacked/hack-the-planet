@@ -174,15 +174,12 @@ $(document).ready(function() {
     $attack.on('click', function() {
         if (defender === false || playerWin === true) {
             return;
-        }
-        $stats.show();
-        if (defender === true) {
+        } else {
+            $stats.show();
             selectedChar.hit(selectedDef);
             $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.hackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterHack + ' damage.');
             $('#character-hp').html('Data Connection: ' + selectedChar.dataConnection);
             $('#defender-hp').html('Data Connection: ' + selectedDef.dataConnection);
-        } else {
-            return;
         }
         selectedChar.hackPower *= 2;
         check();
@@ -208,10 +205,6 @@ $(document).ready(function() {
         $('<p id="brute-hp"></p>').appendTo('#brute');
 
         createCharacters();
-        console.log(wyrm);
-        console.log(brute);
-        console.log(fdat);
-        console.log(ph15h);
         display();
         selectCharacter();
 
