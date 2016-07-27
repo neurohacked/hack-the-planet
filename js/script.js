@@ -3,7 +3,7 @@ $(document).ready(function() {
     $select = $('#select');
     $choice = $('#choice');
     $stats = $('#battle-stats');
-    $characters = $('#wyrm, #ph15h, #brute, #fdat');
+    $characters = $('#_case_, #acid, #brute, #fdat');
     $infohead = $('#info-header');
     $info = $('#info');
     $reset = $('#reset');
@@ -18,10 +18,10 @@ $(document).ready(function() {
     }
     // Create characters for the game.
     function createCharacters() {
-        wyrm = new character('_wyrm_', 100, 2, 5);
-        ph15h = new character('ph15h', 100, 1, 5);
-        brute = new character('Brüte', 100, 2, 10);
-        fdat = new character('f.dat', 100, 1, 10);
+        _case_ = new character('_case_', 110, 4, 20);
+        acid = new character('acid', 120, 2, 10);
+        brute = new character('Brüte', 170, 1, 15);
+        fdat = new character('f.dat', 150, 1, 12);
         $('<p id="fdat-hp"></p>').appendTo('#fdat');
     }
     // Handle the Hacking
@@ -44,8 +44,8 @@ $(document).ready(function() {
         $stats.empty().hide();
         $characters.off('click');
         $characters.show().attr('class', 'btn btn-lg btn-default char').appendTo('#characters');
-        $('#wyrm-hp').html('Data Connection: ' + wyrm.dataConnection);
-        $('#ph15h-hp').html('Data Connection: ' + ph15h.dataConnection);
+        $('#_case_-hp').html('Data Connection: ' + _case_.dataConnection);
+        $('#acid-hp').html('Data Connection: ' + acid.dataConnection);
         $('#brute-hp').html('Data Connection: ' + brute.dataConnection);
         $('#fdat-hp').html('Data Connection: ' + fdat.dataConnection);
         $game.hide();
@@ -66,27 +66,27 @@ $(document).ready(function() {
             // Try tying the objects to the DOM elements that were created.
             // This would significantly reduce code duplication.
 
-            if ($(this).attr('id') == "wyrm") {
-                $('#wyrm').appendTo('#character');
-                $('#ph15h, #brute, #fdat').toggleClass('char enemy').appendTo('#rivals');
-                $('#wyrm-hp').attr("id", "character-hp");
+            if ($(this).attr('id') == "_case_") {
+                $('#_case_').appendTo('#character');
+                $('#acid, #brute, #fdat').toggleClass('char enemy').appendTo('#rivals');
+                $('#_case_-hp').attr("id", "character-hp");
                 $characters.off('click');
-                selectedChar = wyrm;
-            } else if ($(this).attr('id') == "ph15h") {
-                $('#ph15h').appendTo('#character');
-                $('#wyrm, #brute, #fdat').toggleClass('char enemy').appendTo('#rivals');
-                $('#ph15h-hp').attr("id", "character-hp");
+                selectedChar = _case_;
+            } else if ($(this).attr('id') == "acid") {
+                $('#acid').appendTo('#character');
+                $('#_case_, #brute, #fdat').toggleClass('char enemy').appendTo('#rivals');
+                $('#acid-hp').attr("id", "character-hp");
                 $characters.off('click');
-                selectedChar = ph15h;
+                selectedChar = acid;
             } else if ($(this).attr('id') == "brute") {
                 $('#brute').appendTo('#character');
-                $('#wyrm, #ph15h, #fdat').toggleClass('char enemy').appendTo('#rivals');
+                $('#_case_, #acid, #fdat').toggleClass('char enemy').appendTo('#rivals');
                 $('#brute-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = brute;
             } else if ($(this).attr('id') == "fdat") {
                 $('#fdat').appendTo('#character');
-                $('#wyrm, #ph15h, #brute').toggleClass('char enemy').appendTo('#rivals');
+                $('#_case_, #acid, #brute').toggleClass('char enemy').appendTo('#rivals');
                 $('#fdat-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = fdat;
@@ -100,16 +100,16 @@ $(document).ready(function() {
             $info.html('Click the HACK button to hack your chosen defender.');
             if (defender) return;
             defender = true;
-            if ($(this).attr('id') == "wyrm") {
-                $('#wyrm').toggleClass('enemy defender').appendTo('#defender');
-                $('#wyrm-hp').attr("id", "defender-hp");
+            if ($(this).attr('id') == "_case_") {
+                $('#_case_').toggleClass('enemy defender').appendTo('#defender');
+                $('#_case_-hp').attr("id", "defender-hp");
                 $characters.off('click');
-                selectedDef = wyrm;
-            } else if ($(this).attr('id') == "ph15h") {
-                $('#ph15h').toggleClass('enemy defender').appendTo('#defender');
-                $('#ph15h-hp').attr("id", "defender-hp");
+                selectedDef = _case_;
+            } else if ($(this).attr('id') == "acid") {
+                $('#acid').toggleClass('enemy defender').appendTo('#defender');
+                $('#acid-hp').attr("id", "defender-hp");
                 $characters.off('click');
-                selectedDef = ph15h;
+                selectedDef = acid;
             } else if ($(this).attr('id') == "brute") {
                 $('#brute').toggleClass('enemy defender').appendTo('#defender');
                 $('#brute-hp').attr("id", "defender-hp");
@@ -148,7 +148,7 @@ $(document).ready(function() {
             $('.defender').hide();
             $reset.show();
             $info.html('Click the Play Again button to start over.');
-            $stats.html('<div id="defeat" class="alert alert-success">You Won!</div>');
+            $stats.html('<div id="defeat" class="alert alert-success">y0u 4r3 l337!</div>');
             return;
         } else if (secondDefender === true && thirdDefender === false && selectedDef.isDefeated()) {
             $('.defender').hide();
@@ -198,10 +198,9 @@ $(document).ready(function() {
         third = false;
         playerWin = false;
 
-
         $('#character-hp, #defender-hp, #defender-first, #defender-second').remove();
-        $('<p id="wyrm-hp"></p>').appendTo('#wyrm');
-        $('<p id="ph15h-hp"></p>').appendTo('#ph15h');
+        $('<p id="_case_-hp"></p>').appendTo('#_case_');
+        $('<p id="acid-hp"></p>').appendTo('#acid');
         $('<p id="brute-hp"></p>').appendTo('#brute');
 
         createCharacters();
