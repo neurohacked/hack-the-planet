@@ -41,7 +41,6 @@ $(document).ready(function() {
     }
     // Display characters on the page with all properties set at default.
     function display() {
-        $choice.html('Select Your Hacker: ');
         $stats.empty().hide();
         $characters.off('click');
         $characters.show().attr('class', 'btn btn-lg btn-default char').appendTo('#characters');
@@ -173,11 +172,10 @@ $(document).ready(function() {
     }
     // HACK THE PLANET!
     $attack.on('click', function() {
-        console.log(selectedChar);
-        $stats.show();
-        if (playerWin) {
+        if (defender === false || playerWin === true) {
             return;
         }
+        $stats.show();
         if (defender === true) {
             selectedChar.hit(selectedDef);
             $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.hackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterHack + ' damage.');
