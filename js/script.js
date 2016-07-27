@@ -58,7 +58,7 @@ $(document).ready(function() {
         $('.char').on('click', function() {
             $game.show();
             $select.hide();
-            $info.html('Great choice! Now choose someone to hack from the avaialble rivals.');
+            $info.html('Great choice! Now choose someone to hack from the available rivals.');
             if (charSelected) {
                 return;
             }
