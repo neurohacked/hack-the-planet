@@ -19,14 +19,12 @@ $(document).ready(function() {
     // Create characters for the game.
     function createCharacters() {
         wyrm = new character('_wyrm_', 100, 2, 5);
-        $('<p id="wyrm-hp"></p>').appendTo('#wyrm');
         ph15h = new character('ph15h', 100, 1, 5);
-        $('<p id="ph15h-hp"></p>').appendTo('#ph15h');
         brute = new character('Brüte', 100, 2, 10);
-        $('<p id="brute-hp"></p>').appendTo('#brute');
         fdat = new character('f.dat', 100, 1, 10);
         $('<p id="fdat-hp"></p>').appendTo('#fdat');
     }
+    // Handle the Hacking
     character.prototype.hit = function(who) {
         if (this.dataConnection > 0) {
             this.counter(who.counterHack);
@@ -46,7 +44,7 @@ $(document).ready(function() {
         $choice.html('Select Your Hacker: ');
         $stats.empty().hide();
         $characters.off('click');
-        $characters.show().attr('class', 'btn btn-lg char').appendTo('#characters');
+        $characters.show().attr('class', 'btn btn-lg btn-default char').appendTo('#characters');
         $('#wyrm-hp').html('Data Connection: ' + wyrm.dataConnection);
         $('#ph15h-hp').html('Data Connection: ' + ph15h.dataConnection);
         $('#brute-hp').html('Data Connection: ' + brute.dataConnection);
@@ -61,7 +59,7 @@ $(document).ready(function() {
         $('.char').on('click', function() {
             $game.show();
             $select.hide();
-            $info.html('Great choice! Now choose someone to battle against from the avaialble enemies.');
+            $info.html('Great choice! Now choose someone to hack from the avaialble rivals.');
             if (charSelected) {
                 return;
             }
@@ -71,25 +69,25 @@ $(document).ready(function() {
 
             if ($(this).attr('id') == "wyrm") {
                 $('#wyrm').appendTo('#character');
-                $('#ph15h, #brute, #fdat').toggleClass('char enemy').appendTo('#enemies');
+                $('#ph15h, #brute, #fdat').toggleClass('char enemy').appendTo('#rivals');
                 $('#wyrm-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = wyrm;
             } else if ($(this).attr('id') == "ph15h") {
                 $('#ph15h').appendTo('#character');
-                $('#wyrm, #brute, #fdat').toggleClass('char enemy').appendTo('#enemies');
+                $('#wyrm, #brute, #fdat').toggleClass('char enemy').appendTo('#rivals');
                 $('#ph15h-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = ph15h;
             } else if ($(this).attr('id') == "brute") {
                 $('#brute').appendTo('#character');
-                $('#wyrm, #ph15h, #fdat').toggleClass('char enemy').appendTo('#enemies');
+                $('#wyrm, #ph15h, #fdat').toggleClass('char enemy').appendTo('#rivals');
                 $('#brute-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = brute;
             } else if ($(this).attr('id') == "fdat") {
                 $('#fdat').appendTo('#character');
-                $('#wyrm, #ph15h, #brute').toggleClass('char enemy').appendTo('#enemies');
+                $('#wyrm, #ph15h, #brute').toggleClass('char enemy').appendTo('#rivals');
                 $('#fdat-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = fdat;
@@ -173,24 +171,24 @@ $(document).ready(function() {
             return;
         }
     }
-    //  THE PLANET!
-        $attack.on('click', function() {
-            console.log(selectedChar);
-            $stats.show();
-            if (playerWin) {
-                return;
-            }
-            if (defender === true) {
-                selectedChar.hit(selectedDef);
-                $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.hackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterHack + ' damage.');
-                $('#character-hp').html('Data Connection: ' + selectedChar.dataConnection);
-                $('#defender-hp').html('Data Connection: ' + selectedDef.dataConnection);
-            } else {
-                return;
-            }
-            selectedChar.hackPower *= 2;
-            check();
-        });
+    // HACK THE PLANET!
+    $attack.on('click', function() {
+        console.log(selectedChar);
+        $stats.show();
+        if (playerWin) {
+            return;
+        }
+        if (defender === true) {
+            selectedChar.hit(selectedDef);
+            $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.hackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterHack + ' damage.');
+            $('#character-hp').html('Data Connection: ' + selectedChar.dataConnection);
+            $('#defender-hp').html('Data Connection: ' + selectedDef.dataConnection);
+        } else {
+            return;
+        }
+        selectedChar.hackPower *= 2;
+        check();
+    });
     // Setup the game for initial play.
     function play() {
         selectedChar = '';
@@ -207,6 +205,9 @@ $(document).ready(function() {
 
 
         $('#character-hp, #defender-hp, #defender-first, #defender-second').remove();
+        $('<p id="wyrm-hp"></p>').appendTo('#wyrm');
+        $('<p id="ph15h-hp"></p>').appendTo('#ph15h');
+        $('<p id="brute-hp"></p>').appendTo('#brute');
 
         createCharacters();
         console.log(wyrm);
