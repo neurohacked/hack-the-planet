@@ -20,9 +20,13 @@ $(document).ready(function() {
     // Create characters for the game.
     function createCharacters() {
         luke = new character('Luke Skywalker', 150, 5, 5);
-        kenobi = new character('Obi-Wan Kenobi', 100, 20, 5);
+        kenobi = new character('Obi-Wan Kenobi', 100, 1, 5);
         vader = new character('Darth Vader', 500, 2, 10);
         sidious = new character('Darth Sidious', 180, 1, 10);
+        $('<p id="luke-hp"></p>').appendTo('#luke');
+        $('<p id="kenobi-hp"></p>').appendTo('#kenobi');
+        $('<p id="vader-hp"></p>').appendTo('#vader');
+        $('<p id="sidious-hp"></p>').appendTo('#sidious');
     }
     // Display characters on the page with all properties set at default.
     function display() {
@@ -147,7 +151,7 @@ $(document).ready(function() {
             return;
         } else if (secondDefender === true && thirdDefender === false && selectedDef.isDefeated()) {
             $('.defender').hide();
-            $('#defe').attr('id', 'defender-first');
+            $('#defender-hp').attr('id', 'defender-second');
             $info.html('On to the last one!');
             $stats.html('You defeated ' + selectedDef.name);
             second = true;
@@ -213,6 +217,9 @@ $(document).ready(function() {
         second = false;
         third = false;
         playerWin = false;
+
+
+        $('#character-hp, #defender-hp, #defender-first, #defender-second').remove();
 
         createCharacters();
         display();
