@@ -147,7 +147,7 @@ $(document).ready(function() {
             $attack.hide();
             $('.defender').hide();
             $reset.show();
-            $info.html('Click the Play Again button to start over.');
+            $info.html('Click the Hack Again button.');
             $stats.html('<div id="defeat" class="alert alert-success">y0u 4r3 l337!</div>');
             return;
         } else if (secondDefender === true && thirdDefender === false && selectedDef.isDefeated()) {
