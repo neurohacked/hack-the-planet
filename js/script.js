@@ -20,12 +20,12 @@ $(document).ready(function() {
     // Create characters for the game.
     function createCharacters() {
         luke = new character('Luke Skywalker', 150, 5, 5);
-        kenobi = new character('Obi-Wan Kenobi', 100, 1, 5);
-        vader = new character('Darth Vader', 500, 2, 10);
-        sidious = new character('Darth Sidious', 180, 1, 10);
         $('<p id="luke-hp"></p>').appendTo('#luke');
+        kenobi = new character('Obi-Wan Kenobi', 100, 1, 5);
         $('<p id="kenobi-hp"></p>').appendTo('#kenobi');
+        vader = new character('Darth Vader', 500, 2, 10);
         $('<p id="vader-hp"></p>').appendTo('#vader');
+        sidious = new character('Darth Sidious', 180, 1, 10);
         $('<p id="sidious-hp"></p>').appendTo('#sidious');
     }
     // Display characters on the page with all properties set at default.
