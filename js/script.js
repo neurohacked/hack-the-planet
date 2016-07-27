@@ -115,11 +115,13 @@ $(document).ready(function() {
                 console.log('First Defender: ' + firstDefender);
             } else if (second === false && third === false) {
                 secondDefender = true;
+                $stats.empty().hide();
                 console.log('This is Second');
                 console.log('First Defender: ' + firstDefender);
                 console.log('Second Defender: ' + secondDefender);
             } else if (first == true && second === true) {
                 thirdDefender = true;
+                $stats.empty().hide();
                 console.log('This is Third');
                 console.log('First Defender: ' + firstDefender);
                 console.log('Second Defender: ' + secondDefender);
@@ -140,6 +142,8 @@ $(document).ready(function() {
         }
         if (thirdDefender === true && selectedDef.isDefeated()) {
             playerWin = true;
+            $attack.hide();
+            $reset.show();
             $stats.html('<div id="defeat" class="alert alert-success">You Won!</div>');
             return;
         } else if (secondDefender === true && thirdDefender === false && selectedDef.isDefeated()) {
