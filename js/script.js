@@ -22,7 +22,6 @@ $(document).ready(function() {
         acid = new character('acid', 120, 2, 10);
         brute = new character('Brüte', 170, 1, 15);
         fdat = new character('f.dat', 150, 1, 12);
-        $('<p id="fdat-hp"></p>').appendTo('#fdat');
     }
     // Handle the Hacking
     character.prototype.hit = function(who) {
@@ -177,7 +176,7 @@ $(document).ready(function() {
         } else {
             $stats.show();
             selectedChar.hit(selectedDef);
-            $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.hackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterHack + ' damage.');
+            $stats.html('You hacked ' + selectedDef.name + ' for ' + selectedChar.hackPower + ' damage. <br/>' + selectedDef.name + ' hacked you for ' + selectedDef.counterHack + ' damage.');
             $('#character-hp').html('Data Connection: ' + selectedChar.dataConnection);
             $('#defender-hp').html('Data Connection: ' + selectedDef.dataConnection);
         }
@@ -202,6 +201,7 @@ $(document).ready(function() {
         $('<p id="_case_-hp"></p>').appendTo('#_case_');
         $('<p id="acid-hp"></p>').appendTo('#acid');
         $('<p id="brute-hp"></p>').appendTo('#brute');
+        $('<p id="fdat-hp"></p>').appendTo('#fdat');
 
         createCharacters();
         display();
