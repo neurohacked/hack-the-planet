@@ -82,7 +82,6 @@ $(document).ready(function() {
                 selectedChar = sidious;
             }
             select();
-            console.log('Character Selected: ' + selectedChar.name + ', HP: ' + selectedChar.healthPoints);
         });
     }
     // Select defender.
@@ -114,21 +113,12 @@ $(document).ready(function() {
             }
             if (first === false && second === false && third === false) {
                 firstDefender = true;
-                console.log('This is First');
-                console.log('First Defender: ' + firstDefender);
             } else if (second === false && third === false) {
                 secondDefender = true;
                 $stats.empty().hide();
-                console.log('This is Second');
-                console.log('First Defender: ' + firstDefender);
-                console.log('Second Defender: ' + secondDefender);
             } else if (first == true && second === true) {
                 thirdDefender = true;
                 $stats.empty().hide();
-                console.log('This is Third');
-                console.log('First Defender: ' + firstDefender);
-                console.log('Second Defender: ' + secondDefender);
-                console.log('Third Defender: ' + thirdDefender);
             }
             fight();
         });
@@ -195,8 +185,6 @@ $(document).ready(function() {
                 $stats.html('You attacked ' + selectedDef.name + ' for ' + selectedChar.attackPower + ' damage. <br/>' + selectedDef.name + ' attacked you for ' + selectedDef.counterAttack + ' damage.');
                 $('#character-hp').html('HP: ' + selectedChar.healthPoints);
                 $('#defender-hp').html('HP: ' + selectedDef.healthPoints);
-                console.log('Character HP: ' + selectedChar.healthPoints);
-                console.log('Defender HP: ' + selectedDef.healthPoints);
             } else {
                 return;
             }
