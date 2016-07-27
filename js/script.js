@@ -77,7 +77,6 @@ $(document).ready(function() {
                 $characters.off('click');
                 selectedChar = sidious;
             }
-
             select();
             console.log('Character Selected: ' + selectedChar.name + ', HP: ' + selectedChar.healthPoints);
         });
@@ -147,17 +146,19 @@ $(document).ready(function() {
             $stats.html('<div id="defeat" class="alert alert-success">You Won!</div>');
             return;
         } else if (secondDefender === true && thirdDefender === false && selectedDef.isDefeated()) {
+            $('.defender').hide();
+            $('#defe').attr('id', 'defender-first');
             $info.html('On to the last one!');
             $stats.html('You defeated ' + selectedDef.name);
-            $('.defender').hide();
             second = true;
             defender = false;
             select();
             return;
         } else if (secondDefender === false && selectedDef.isDefeated()) {
+            $('.defender').hide();
+            $('#defender-hp').attr('id', 'defender-first');
             $info.html('Nice! Now choose the next defender.');
             $stats.html('You defeated ' + selectedDef.name);
-            $('.defender').hide();
             first = true;
             defender = false;
             select();
@@ -192,6 +193,8 @@ $(document).ready(function() {
                 $('#defender-hp').html('HP: ' + selectedDef.healthPoints);
                 console.log('Character HP: ' + selectedChar.healthPoints);
                 console.log('Defender HP: ' + selectedDef.healthPoints);
+            } else {
+                return;
             }
             selectedChar.attackPower *= 2;
             check();
@@ -217,8 +220,6 @@ $(document).ready(function() {
 
         $infohead.html('TO PLAY');
         $info.html('Chose a character!');
-        console.log('Character Selected: ' + charSelected);
-        console.log('Defender Selected: ' + defender);
     }
     // Restart the game to play a New Game.
     $('#reset').on('click', function() {
