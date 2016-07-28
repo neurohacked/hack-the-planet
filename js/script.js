@@ -42,7 +42,7 @@ $(document).ready(function() {
     function display() {
         $stats.empty().hide();
         $characters.off('click');
-        $characters.show().attr('class', 'btn btn-lg btn-char hacker').appendTo('#characters');
+        $characters.show().attr('class', 'btn btn-lg btn-char').appendTo('#characters');
         $('#_case_-hp').html('Data Connection: ' + _case_.dataConnection);
         $('#acid-hp').html('Data Connection: ' + acid.dataConnection);
         $('#brute-hp').html('Data Connection: ' + brute.dataConnection);
@@ -54,7 +54,7 @@ $(document).ready(function() {
     }
     // Player character selection.
     function selectCharacter() {
-        $('.hacker').on('click', function() {
+        $('.btn-char').on('click', function() {
             $game.show();
             $select.hide();
             $info.html('Great choice! Now choose someone to hack from the available rivals.');
@@ -63,26 +63,26 @@ $(document).ready(function() {
             }
             charSelected = true;
             if ($(this).attr('id') == "_case_") {
-                $('#_case_').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#acid, #brute, #fdat').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
+                $('#_case_').toggleClass('btn-char btn-hacker btn-block').appendTo('#character');
+                $('#acid, #brute, #fdat').appendTo('#rivals');
                 $('#_case_-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = _case_;
             } else if ($(this).attr('id') == "acid") {
-                $('#acid').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#_case_, #brute, #fdat').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
+                $('#acid').toggleClass('btn-char btn-hacker btn-block').appendTo('#character');
+                $('#_case_, #brute, #fdat').appendTo('#rivals');
                 $('#acid-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = acid;
             } else if ($(this).attr('id') == "brute") {
-                $('#brute').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#_case_, #acid, #fdat').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
+                $('#brute').toggleClass('btn-char btn-hacker btn-block').appendTo('#character');
+                $('#_case_, #acid, #fdat').appendTo('#rivals');
                 $('#brute-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = brute;
             } else if ($(this).attr('id') == "fdat") {
-                $('#fdat').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#_case_, #acid, #brute').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
+                $('#fdat').toggleClass('btn-char btn-hacker btn-block').appendTo('#character');
+                $('#_case_, #acid, #brute').appendTo('#rivals');
                 $('#fdat-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = fdat;
@@ -92,27 +92,30 @@ $(document).ready(function() {
     }
     // Select defender.
     function select() {
-        $('.rival').on('click', function() {
+        if (charSelected === false) {
+            return;
+        }
+        $('.btn-char').on('click', function() {
             $info.html('Click the HACK button to hack your chosen defender.');
             if (defender) return;
             defender = true;
             if ($(this).attr('id') == "_case_") {
-                $('#_case_').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
+                $('#_case_').toggleClass('btn-char btn-defender btn-block').appendTo('#defender');
                 $('#_case_-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = _case_;
             } else if ($(this).attr('id') == "acid") {
-                $('#acid').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
+                $('#acid').toggleClass('btn-char btn-defender btn-block').appendTo('#defender');
                 $('#acid-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = acid;
             } else if ($(this).attr('id') == "brute") {
-                $('#brute').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
+                $('#brute').toggleClass('btn-char btn-defender btn-block').appendTo('#defender');
                 $('#brute-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = brute;
             } else if ($(this).attr('id') == "fdat") {
-                $('#fdat').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
+                $('#fdat').toggleClass('btn-char btn-defender btn-block').appendTo('#defender');
                 $('#fdat-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = fdat;
@@ -141,13 +144,13 @@ $(document).ready(function() {
         if (thirdDefender === true && selectedDef.isDefeated()) {
             playerWin = true;
             $attack.hide();
-            $('.defender').hide();
+            $('.btn-defender').hide();
             $reset.show();
             $info.html('Click the Hack Again button.');
             $stats.html('<div id="defeat" class="alert alert-success">y0u 4r3 l337!</div>');
             return;
         } else if (secondDefender === true && thirdDefender === false && selectedDef.isDefeated()) {
-            $('.defender').hide();
+            $('.btn-defender').hide();
             $('#defender-hp').attr('id', 'defender-second');
             $info.html('On to the last one!');
             $stats.html('You defeated ' + selectedDef.name);
@@ -156,7 +159,7 @@ $(document).ready(function() {
             select();
             return;
         } else if (secondDefender === false && selectedDef.isDefeated()) {
-            $('.defender').hide();
+            $('.btn-defender').hide();
             $('#defender-hp').attr('id', 'defender-first');
             $info.html('Nice! Now choose the next defender.');
             $stats.html('You defeated ' + selectedDef.name);
