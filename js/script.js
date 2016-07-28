@@ -42,7 +42,7 @@ $(document).ready(function() {
     function display() {
         $stats.empty().hide();
         $characters.off('click');
-        $characters.show().attr('class', 'btn btn-lg btn-default hacker').appendTo('#characters');
+        $characters.show().attr('class', 'btn btn-lg btn-char hacker').appendTo('#characters');
         $('#_case_-hp').html('Data Connection: ' + _case_.dataConnection);
         $('#acid-hp').html('Data Connection: ' + acid.dataConnection);
         $('#brute-hp').html('Data Connection: ' + brute.dataConnection);
@@ -64,25 +64,25 @@ $(document).ready(function() {
             charSelected = true;
             if ($(this).attr('id') == "_case_") {
                 $('#_case_').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#acid, #brute, #fdat').toggleClass('hacker rival').appendTo('#rivals');
+                $('#acid, #brute, #fdat').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
                 $('#_case_-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = _case_;
             } else if ($(this).attr('id') == "acid") {
                 $('#acid').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#_case_, #brute, #fdat').toggleClass('hacker rival').appendTo('#rivals');
+                $('#_case_, #brute, #fdat').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
                 $('#acid-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = acid;
             } else if ($(this).attr('id') == "brute") {
                 $('#brute').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#_case_, #acid, #fdat').toggleClass('hacker rival').appendTo('#rivals');
+                $('#_case_, #acid, #fdat').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
                 $('#brute-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = brute;
             } else if ($(this).attr('id') == "fdat") {
                 $('#fdat').toggleClass('hacker char btn-block').appendTo('#character');
-                $('#_case_, #acid, #brute').toggleClass('hacker rival').appendTo('#rivals');
+                $('#_case_, #acid, #brute').toggleClass('hacker rival btn-char btn-rival').appendTo('#rivals');
                 $('#fdat-hp').attr("id", "character-hp");
                 $characters.off('click');
                 selectedChar = fdat;
@@ -97,22 +97,22 @@ $(document).ready(function() {
             if (defender) return;
             defender = true;
             if ($(this).attr('id') == "_case_") {
-                $('#_case_').toggleClass('rival defender btn-block').appendTo('#defender');
+                $('#_case_').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
                 $('#_case_-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = _case_;
             } else if ($(this).attr('id') == "acid") {
-                $('#acid').toggleClass('rival defender btn-block').appendTo('#defender');
+                $('#acid').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
                 $('#acid-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = acid;
             } else if ($(this).attr('id') == "brute") {
-                $('#brute').toggleClass('rival defender btn-block').appendTo('#defender');
+                $('#brute').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
                 $('#brute-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = brute;
             } else if ($(this).attr('id') == "fdat") {
-                $('#fdat').toggleClass('rival defender btn-block').appendTo('#defender');
+                $('#fdat').toggleClass('rival defender btn-block btn-rival btn-defender').appendTo('#defender');
                 $('#fdat-hp').attr("id", "defender-hp");
                 $characters.off('click');
                 selectedDef = fdat;

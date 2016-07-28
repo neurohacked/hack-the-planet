@@ -59,15 +59,38 @@ h1, h2, h3 {
 .hacker, .rival {
     margin: 0 5px;
 }
-.btn-default {
+.btn:focus {
+    color: #fff;
+}
+.btn-char {
     color: #fff;
     background-color: #02AA00;
     border-color: #7ADB00;
 }
-.btn-default:hover {
+.btn-char:hover {
     color: #fff;
     background-color: #7ADB00;
     border-color: #7ADB00;
+}
+.btn-rival {
+    color: #fff;
+    background-color: darkred;
+    border-color: red;
+}
+.btn-rival:hover {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}
+.btn-defender {
+    color: #fff;
+    background-color: #222;
+    border-color: #555;
+}
+.btn-defender:hover {
+    color: #fff;
+    background-color: #555;
+    border-color: #555;
 }
 #reset {
     margin-bottom: 20px;
