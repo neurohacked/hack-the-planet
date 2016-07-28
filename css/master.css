@@ -74,23 +74,23 @@ h1, h2, h3 {
 }
 .btn-rival {
     color: #fff;
-    background-color: darkred;
-    border-color: red;
+    background-color: #646464;
+    border-color: #A5A5A5;
 }
 .btn-rival:hover {
     color: #fff;
-    background-color: red;
-    border-color: red;
+    background-color: #A5A5A5;
+    border-color: #A5A5A5;
 }
 .btn-defender {
     color: #fff;
-    background-color: #222;
-    border-color: #555;
+    background-color: #AA0003;
+    border-color: #DB0004;
 }
 .btn-defender:hover {
     color: #fff;
-    background-color: #555;
-    border-color: #555;
+    background-color: #DB0004;
+    border-color: #DB0004;
 }
 #reset {
     margin-bottom: 20px;
