@@ -55,8 +55,8 @@ h1, h2, h3 {
     text-align: center;
     margin: 20px 0;
 }
-.char, .enemy, .defender {
-    margin: 5px;
+.hacker, .rival {
+    margin: 0 5px;
 }
 .btn-default {
     color: #fff;
