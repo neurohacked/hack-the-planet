@@ -93,6 +93,7 @@ h1, h2, h3 {
     width: 40px;
     height: 40px;
     position: fixed;
+    display: none;
     bottom: 50px;
     right: 50px;
     font-size: 1.7em;
