@@ -61,32 +61,32 @@ h1, h2, h3 {
 .btn-char {
     margin: 5px 7px;
     color: #ccc;
-    background-color: #222;
+    background-color: #444;
     border-color: #888;
 }
 .btn-char:hover {
     color: #ccc;
-    background-color: #444;
+    background-color: #222;
     border-color: #888;
 }
 .btn-hacker {
     color: #50f148;
-    background-color: #222;
+    background-color: #444;
     border-color: #888;
 }
 .btn-hacker:hover {
     color: #50f148;
-    background-color: #444;
+    background-color: #222;
     border-color: #888;
 }
 .btn-defender {
     color: #F1484B;
-    background-color: #222;
+    background-color: #444;
     border-color: #888;
 }
 .btn-defender:hover {
     color: #F1484B;
-    background-color: #444;
+    background-color: #222;
     border-color: #888;
 }
 #reset {
