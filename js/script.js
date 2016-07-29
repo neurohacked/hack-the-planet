@@ -7,8 +7,8 @@ $(document).ready(function() {
     $infohead = $('#info-header');
     $info = $('#info');
     $reset = $('#reset');
-    $attack = $('#attack');
-    // Function to characters and character stats.
+    $hack = $('#hack');
+    // Function to create characters and character stats.
     function character(name, dataConnection, hackPower, counterHack) {
         this.name = name;
         this.dataConnection = dataConnection
@@ -23,7 +23,7 @@ $(document).ready(function() {
         brute = new character('Brüte', 170, 1, 15);
         fdat = new character('f.dat', 150, 1, 12);
     }
-    // Handle the Hacking
+    // Handle the hacking
     character.prototype.hit = function(who) {
         if (this.dataConnection > 0) {
             this.counter(who.counterHack);
@@ -38,9 +38,8 @@ $(document).ready(function() {
     character.prototype.isDefeated = function() {
             return this.dataConnection <= 0;
         }
-        // Display characters on the page with all properties set at default.
+    // Display characters on the page with all properties set at default.
     function display() {
-        $stats.empty().hide();
         $characters.off('click');
         $characters.show().attr('class', 'btn btn-lg btn-char').appendTo('#characters');
         $('#_case_-hp').html('Data Connection: ' + _case_.dataConnection);
@@ -48,15 +47,16 @@ $(document).ready(function() {
         $('#brute-hp').html('Data Connection: ' + brute.dataConnection);
         $('#fdat-hp').html('Data Connection: ' + fdat.dataConnection);
         $game.hide();
-        $select.show();
-        $attack.show();
         $reset.hide();
+        $stats.empty().hide();
+        $select.show();
+        $hack.show();
     }
     // Player character selection.
     function selectCharacter() {
         $('.btn-char').on('click', function() {
-            $game.show();
             $select.hide();
+            $game.show();
             $info.html('Great choice! Now choose someone to hack from the available rivals.');
             if (charSelected) {
                 return;
@@ -90,7 +90,7 @@ $(document).ready(function() {
             select();
         });
     }
-    // Select defender.
+    // Select a defender if one does not exist.
     function select() {
         if (charSelected === false) {
             return;
@@ -131,11 +131,11 @@ $(document).ready(function() {
             }
         });
     }
-    // Check stats after attack
+    // Check stats after hacking
     function check() {
         // check if player is defeated
         if (selectedChar.dataConnection <= 0) {
-            $attack.hide();
+            $hack.hide();
             $reset.show();
             $stats.html('<div id="defeat" class="alert alert-danger">You Were Defeated!</div>');
             return;
@@ -143,8 +143,8 @@ $(document).ready(function() {
         // check if defender is defeated
         if (thirdDefender === true && selectedDef.isDefeated()) {
             playerWin = true;
-            $attack.hide();
             $('.btn-defender').hide();
+            $hack.hide();
             $reset.show();
             $info.html('Click the Hack Again button.');
             $stats.html('<div id="defeat" class="alert alert-success">y0u 4r3 l337!</div>');
@@ -169,8 +169,8 @@ $(document).ready(function() {
             return;
         }
     }
-    // HACK THE PLANET!
-    $attack.on('click', function() {
+    // HACK THE PLANET! - Handle hacking
+    $hack.on('click', function() {
         if (defender === false || playerWin === true) {
             return;
         } else {
