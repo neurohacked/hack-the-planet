@@ -100,3 +100,18 @@ h1, h2, h3 {
     color: #ccc;
     background-color: #777;
 }
+/*@media (max-width: 768px) {
+  .btn-responsive {
+    padding:2px 4px;
+    font-size:80%;
+    line-height: 1;
+    border-radius:3px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1200px) {
+  .btn-responsive {
+    padding:4px 9px;
+    font-size:90%;
+    line-height: 1.2;
+  }
+}*/

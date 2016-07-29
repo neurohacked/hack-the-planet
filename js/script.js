@@ -41,7 +41,7 @@ $(document).ready(function() {
     // Display characters on the page with all properties set at default.
     function display() {
         $characters.off('click');
-        $characters.show().attr('class', 'btn btn-lg btn-char').appendTo('#characters');
+        $characters.show().attr('class', 'btn btn-lg btn-char ').appendTo('#characters');
         $('#_case_-hp').html('Data Connection: ' + _case_.dataConnection);
         $('#acid-hp').html('Data Connection: ' + acid.dataConnection);
         $('#brute-hp').html('Data Connection: ' + brute.dataConnection);
