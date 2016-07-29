@@ -36,9 +36,9 @@ $(document).ready(function() {
         return this;
     }
     character.prototype.isDefeated = function() {
-        return this.dataConnection <= 0;
-    }
-    // Display characters on the page with all properties set at default.
+            return this.dataConnection <= 0;
+        }
+        // Display characters on the page with all properties set at default.
     function display() {
         $stats.empty().hide();
         $characters.off('click');
@@ -209,6 +209,21 @@ $(document).ready(function() {
 
         $infohead.html('TO PLAY');
         $info.html('Chose a hacker!');
+
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup').fadeIn();
+            } else {
+                $('.scrollup').fadeOut();
+            }
+        });
+
+        $('.scrollup').click(function() {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
     }
     // Restart the game to play a New Game.
     $('#reset').on('click', function() {
