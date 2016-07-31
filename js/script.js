@@ -36,8 +36,8 @@ $(document).ready(function() {
         return this;
     }
     character.prototype.isDefeated = function() {
-            return this.dataConnection <= 0;
-        }
+        return this.dataConnection <= 0;
+    }
     // Display characters on the page with all properties set at default.
     function display() {
         $characters.off('click');
