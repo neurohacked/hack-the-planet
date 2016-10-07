@@ -1,7 +1,13 @@
 # Hack the Planet
+Hack your rival hackers and become the best hacker!
 
-### Description:
-Hack the Planet is a simple javascript game that employs the use of jquery.
-
-### Logic:
-The player starts with a choice between 4 hackers. Once the player has picked their hacker, the code prevents hacking until a defender is chosen from the available rivals. The player hacks their opponent starting at a base hacking power, depending on the hacker chosen, which is then multiplied by 2 after each hack and defender counter hacks with a static counter hacking power. The player's goal is to defeat all rivals without loosing all of their hackers data connection.
+## Future development
+* User login and scores
+  * Allow users to create an account
+  * Multiplayer functionality
+  * Score tracking
+* More dynamic hacking
+  * Hacking arsenal (injection, virus, overload, etc.)
+  * Purchase upgrades
+* More hacker options
+* Customizable hackers once logged in
