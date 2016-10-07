@@ -1,5 +1,5 @@
 # Hack the Planet
-Hack your rival hackers and become the best hacker!
+Hack your rival hackers and become the best!
 
 ## Future development
 * User login and scores
