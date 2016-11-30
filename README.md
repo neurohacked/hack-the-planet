@@ -3,7 +3,7 @@ Hack your rival hackers to prove you are the best hacker!
 
 ## Game Logic
 
-Hack the Planet uses constructors to create the available characters and prototypes for functions that are used to interact between each character.
+Hack the Planet uses constructors to create the available characters and prototypes for functions that are used to interact between each character. When your character attacks a rival, they will counterattack. Your hacking power becomes better with each hack so you must strategically choose your rival targets to come out on top.
 
 ## Future development
 * Code refactoring -- switch cases and overall code optimization.
