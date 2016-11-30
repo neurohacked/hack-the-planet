@@ -1,5 +1,5 @@
 # Hack the Planet
-Hack your rival hackers to prove you are the best hacker!
+Hack your rivals to prove you are the best!
 
 ## Game Logic
 
