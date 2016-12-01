@@ -11,8 +11,8 @@ $(document).ready(function() {
     // Function to create characters and character stats.
     function character(name, dataConnection, hackPower, counterHack) {
         this.name = name;
-        this.dataConnection = dataConnection
-        this.hackPower = hackPower
+        this.dataConnection = dataConnection;
+        this.hackPower = hackPower;
         this.counterHack = counterHack;
         return this;
     }
@@ -30,14 +30,14 @@ $(document).ready(function() {
             who.dataConnection -= this.hackPower;
         }
         return this;
-    }
+    };
     character.prototype.counter = function(howhard) {
         this.dataConnection -= howhard;
         return this;
-    }
+    };
     character.prototype.isDefeated = function() {
         return this.dataConnection <= 0;
-    }
+    };
     // Display characters on the page with all properties set at default.
     function display() {
         $characters.off('click');
